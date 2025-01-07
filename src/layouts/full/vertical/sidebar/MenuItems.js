@@ -45,27 +45,27 @@ const Menuitems = [
 
     {
         id: uniqueId(),
-        title: 'Credit',
+        title: 'Users',
         icon: IconReportMoney,
-        href: '/credit-page'
+        href: '/users'
     },
     {
         id: uniqueId(),
-        title: 'Credit Client',
+        title: 'Employees',
         icon: IconCashBanknote,
-        href: '/client-credit-page'
+        href: '/employees'
     },
     {
         id: uniqueId(),
-        title: 'Achat',
+        title: 'Companies',
         icon: IconReceipt,
-        href: '/achat-page'
+        href: '/companies'
     },
     {
         id: uniqueId(),
-        title: 'Benif',
+        title: 'EmployeeWorkDay',
         icon: IconCoin,
-        href: '/benif-page'
+        href: '/employee-work-day'
     },
     {
         id: uniqueId(),

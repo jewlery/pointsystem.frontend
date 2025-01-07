@@ -20,6 +20,7 @@ if (process.env["build"] === 'dev') {
     }
 }
 
+BASE_URL = 'http://127.0.0.1:8080';
 // Create the Axios instance with the dynamic base URL
 const axiosServices = axios.create({
     baseURL: BASE_URL, // Set the base URL dynamically

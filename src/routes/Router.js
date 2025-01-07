@@ -9,6 +9,7 @@ const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')));
 
 /* ****Pages***** */
+const UsersPage = Loadable(lazy(() => import('../views/users-page/UsersPage')))
 const CreditPage = Loadable(lazy(() => import('../views/credit-page/CreditPage')))
 const ClientCreditPage = Loadable(lazy(() => import('../views/client-credit-page/ClientCreditPage')))
 const AchatPage = Loadable(lazy(() => import('../views/achat-page/AchatPage')))
@@ -36,6 +37,7 @@ const Router = [
             {path: '/tpe-page', exact: true, element: <TpePage/>},
             {path: '/benif-page', exact: true, element: <BenifPage/>},
             {path: '/luise-page', exact: true, element: <LuisePage/>},
+            {path: '/users', exact: true, element: <UsersPage />},
             {path: '*', element: <Navigate to="/auth/404"/>},
         ],
     },

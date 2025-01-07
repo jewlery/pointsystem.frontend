@@ -81,28 +81,28 @@ const CreateTpeDialog = () => {
 
     return (
         <>
-            <Button
-                onClick={handleClickOpen}
-                variant="contained"
-                color="primary"
-                startIcon={<IconPlus/>}
+        <Button
+            onClick={handleClickOpen}
+            variant="contained"
+            color="primary"
+            startIcon={<IconPlus/>}
+            sx={{
+                width: {xs: 'auto', md: '175px'}, // Add responsive styling for icon margin
+                '& .MuiButton-startIcon': {
+                    marginRight: {xs: 0, sm: 0, md: '8px'}, // Remove margin on small screens
+                },
+            }}
+        >
+            <Box
+                component="span"
                 sx={{
-                    width: {xs: 'auto', md: '175px'}, // Add responsive styling for icon margin
-                    '& .MuiButton-startIcon': {
-                        marginRight: {xs: 0, sm: 0, md: '8px'}, // Remove margin on small screens
-                    },
+                    display: {xs: 'none', md: 'inline'}, // Hide text on extra-small screens
+                    whiteSpace: 'nowrap',
                 }}
             >
-                <Box
-                    component="span"
-                    sx={{
-                        display: {xs: 'none', md: 'inline'}, // Hide text on extra-small screens
-                        whiteSpace: 'nowrap',
-                    }}
-                >
-                    Créer un TPE
-                </Box>
-            </Button>
+                Créer un TPE
+            </Box>
+        </Button>
 
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Créer un TPE</DialogTitle>

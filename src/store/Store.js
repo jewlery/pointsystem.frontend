@@ -8,6 +8,9 @@ import TpeReducer from "./apps/tpe/tpeSlice";
 import LuiseReducer from "./apps/luise/luiseSlice";
 import ClientReducer from "./apps/client/clientSlice";
 import DashboardReducer from './apps/dashboard/dashboardSlice';
+import UserReducer from './apps/users/userSlice'; // Import the userSlice
+import CompanyReducer from './slices/companySlice'; // Import the companySlice
+
 
 export const store = configureStore({
   reducer: {
@@ -19,7 +22,9 @@ export const store = configureStore({
     tpeReducer: TpeReducer,
     luiseReducer: LuiseReducer,
     clientReducer: ClientReducer,
-    dashboardReducer: DashboardReducer
+    dashboardReducer: DashboardReducer,
+    userReducer: UserReducer, // Add the userReducer
+    companyReducer: CompanyReducer, // Add the companyReducer
   },
 });
 
