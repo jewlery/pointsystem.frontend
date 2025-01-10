@@ -80,8 +80,8 @@ const companySlice = createSlice({
             })
             .addCase(fetchCompanies.fulfilled, (state, action) => {
                 state.loading = false;
-                state.companies = action.payload.data; // Update the list of companies
-                state.total = action.payload.total; // Update the total count
+                state.companies = action.payload; // Update the list of companies
+                state.total = action.payload.length; // Update the total count
             })
             .addCase(fetchCompanies.rejected, (state, action) => {
                 state.loading = false;
@@ -95,7 +95,6 @@ const companySlice = createSlice({
             })
             .addCase(createCompany.fulfilled, (state, action) => {
                 state.loading = false;
-                state.companies.push(action.payload); // Add the new company to the list
             })
             .addCase(createCompany.rejected, (state, action) => {
                 state.loading = false;
@@ -109,10 +108,6 @@ const companySlice = createSlice({
             })
             .addCase(updateCompany.fulfilled, (state, action) => {
                 state.loading = false;
-                const index = state.companies.findIndex((company) => company.id === action.payload.id);
-                if (index !== -1) {
-                    state.companies[index] = action.payload; // Update the company in the list
-                }
             })
             .addCase(updateCompany.rejected, (state, action) => {
                 state.loading = false;
@@ -126,7 +121,6 @@ const companySlice = createSlice({
             })
             .addCase(deleteCompany.fulfilled, (state, action) => {
                 state.loading = false;
-                state.companies = state.companies.filter((company) => company.id !== action.payload); // Remove the deleted company
             })
             .addCase(deleteCompany.rejected, (state, action) => {
                 state.loading = false;

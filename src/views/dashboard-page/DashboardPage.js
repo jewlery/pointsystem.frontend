@@ -96,27 +96,6 @@ const DashboardPage = () => {
                         <p>Error: {error}</p>
                     </Grid>
                 )}
-
-                {/* Top Cards Section */}
-                <Grid item xs={12} lg={12}>
-                    <TopCards data={dashboardData}/>
-                </Grid>
-
-                {/* Left Column */}
-                <Grid item xs={12} lg={4}>
-                    <Stack spacing={2}>
-                        <LuiseTeen data={dashboardData}/>
-                        <WeeklyStats data={dashboardData}/>
-                    </Stack>
-                </Grid>
-
-                {/* Right Column */}
-                <Grid item xs={12} lg={8}>
-                    <Stack spacing={2}>
-                        <EmployeeSalary data={dashboardData}/>
-                        <Social data={dashboardData}/>
-                    </Stack>
-                </Grid>
             </Grid>
         </Box>
     );

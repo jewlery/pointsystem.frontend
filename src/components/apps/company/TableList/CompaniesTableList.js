@@ -30,6 +30,7 @@ const headCells = [
 
 const CompaniesTableList = () => {
     const dispatch = useDispatch();
+    const companyReducer = useSelector((state) => state.companyReducer);
     const companies = useSelector((state) => state.companyReducer.companies);
     const loading = useSelector((state) => state.companyReducer.loading);
 
@@ -58,6 +59,7 @@ const CompaniesTableList = () => {
     const handleDelete = (id) => {
         if (window.confirm('Are you sure you want to delete this company?')) {
             dispatch(deleteCompany(id));
+            dispatch(fetchCompanies({ page, rowsPerPage, search }));
         }
     };
 
@@ -81,10 +83,10 @@ const CompaniesTableList = () => {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {companies.map((company) => (
-                                    <TableRow key={company.id}>
-                                        <TableCell>{company.id}</TableCell>
-                                        <TableCell>{company.companyName}</TableCell>
+                                {companies?.map((company) => (
+                                    <TableRow key={company.ID}>
+                                        <TableCell>{company.ID}</TableCell>
+                                        <TableCell>{company.CompanyName}</TableCell>
                                         <TableCell>
                                             <Tooltip title="Edit">
                                                 <IconButton color="primary">
@@ -92,7 +94,7 @@ const CompaniesTableList = () => {
                                                 </IconButton>
                                             </Tooltip>
                                             <Tooltip title="Delete">
-                                                <IconButton color="error" onClick={() => handleDelete(company.id)}>
+                                                <IconButton color="error" onClick={() => handleDelete(company.ID)}>
                                                     <IconTrash width="18" />
                                                 </IconButton>
                                             </Tooltip>
@@ -106,7 +108,7 @@ const CompaniesTableList = () => {
                 <TablePagination
                     rowsPerPageOptions={[5, 10, 25]}
                     component="div"
-                    count={companies.length}
+                    count={companies?.length || 0}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}

@@ -14,7 +14,7 @@ const CreditPage = Loadable(lazy(() => import('../views/credit-page/CreditPage')
 const ClientCreditPage = Loadable(lazy(() => import('../views/client-credit-page/ClientCreditPage')))
 const AchatPage = Loadable(lazy(() => import('../views/achat-page/AchatPage')))
 const TpePage = Loadable(lazy(() => import('../views/tpe-page/TpePage')))
-const ChequePage = Loadable(lazy(() => import('../views/cheque-page/ChequePage')))
+const CompanyPage = Loadable(lazy(() => import('../views/company-page/CompanyPage')))
 const BenifPage = Loadable(lazy(() => import('../views/benif-page/BenifPage')))
 const LuisePage = Loadable(lazy(() => import('../views/luise-page/LuisePage')))
 const DashboardPage = Loadable(lazy(() => import('../views/dashboard-page/DashboardPage')))
@@ -38,6 +38,7 @@ const Router = [
             {path: '/benif-page', exact: true, element: <BenifPage/>},
             {path: '/luise-page', exact: true, element: <LuisePage/>},
             {path: '/users', exact: true, element: <UsersPage />},
+            {path: '/companies', exact: true, element: <CompanyPage />},
             {path: '*', element: <Navigate to="/auth/404"/>},
         ],
     },

@@ -9,7 +9,7 @@ import LuiseReducer from "./apps/luise/luiseSlice";
 import ClientReducer from "./apps/client/clientSlice";
 import DashboardReducer from './apps/dashboard/dashboardSlice';
 import UserReducer from './apps/users/userSlice'; // Import the userSlice
-import CompanyReducer from './slices/companySlice'; // Import the companySlice
+import CompanyReducer from './apps/company/companySlice'; // Import the companySlice
 
 
 export const store = configureStore({

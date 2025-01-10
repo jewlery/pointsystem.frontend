@@ -10,29 +10,21 @@ import {
     Typography,
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { createCompany } from 'src/store/slices/companySlice'; // Import the createCompany action
-import { IconPlus } from '@tabler/icons'; // Import the IconPlus for consistency
+import { createCompany } from 'src/store/apps/company/companySlice'; // Assuming you have a companySlice
+import { IconPlus } from '@tabler/icons';
 
 const CreateCompanyDialog = ({ open, onClose }) => {
     const dispatch = useDispatch();
-    const [companyName, setCompanyName] = useState(''); // State for the company name
+    const [companyName, setCompanyName] = useState('');
 
-    // Handle form submission
     const handleSubmit = () => {
-        if (!companyName.trim()) {
-            alert('Company name cannot be empty'); // Basic validation
-            return;
-        }
-
-        dispatch(createCompany({ companyName })) // Dispatch the createCompany action
+        dispatch(createCompany({ companyName }))
             .unwrap()
             .then(() => {
                 onClose(); // Close the dialog on successful creation
-                setCompanyName(''); // Reset the form
             })
             .catch((error) => {
                 console.error('Failed to create company:', error);
-                alert('Failed to create company. Please try again.'); // Show error message
             });
     };
 
@@ -49,33 +41,29 @@ const CreateCompanyDialog = ({ open, onClose }) => {
                         value={companyName}
                         onChange={(e) => setCompanyName(e.target.value)}
                         margin="normal"
-                        required // Mark the field as required
                     />
                 </Box>
             </DialogContent>
             <DialogActions>
-                {/* Cancel Button */}
                 <Button onClick={onClose} color="secondary">
                     Cancel
                 </Button>
-
-                {/* Create Button */}
                 <Button
                     onClick={handleSubmit}
                     color="primary"
                     variant="contained"
-                    startIcon={<IconPlus />} // Add the IconPlus for consistency
+                    startIcon={<IconPlus />}
                     sx={{
-                        width: { xs: 'auto', md: '175px' }, // Match the width of other buttons
+                        width: { xs: 'auto', md: '175px' },
                         '& .MuiButton-startIcon': {
-                            marginRight: { xs: 0, sm: 0, md: '8px' }, // Adjust icon spacing
+                            marginRight: { xs: 0, sm: 0, md: '8px' },
                         },
                     }}
                 >
                     <Box
                         component="span"
                         sx={{
-                            display: { xs: 'none', md: 'inline' }, // Hide text on small screens
+                            display: { xs: 'none', md: 'inline' },
                             whiteSpace: 'nowrap',
                         }}
                     >

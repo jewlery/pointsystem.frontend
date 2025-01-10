@@ -15,6 +15,8 @@ import {
   Paper,
   CircularProgress,
   Button,
+  Tooltip,
+  IconButton,
 } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUsers, deleteUser } from 'src/store/apps/users/userSlice';
@@ -132,20 +134,23 @@ const UsersTableList = () => {
                       <TableCell>{user.Username}</TableCell>
                       <TableCell>{user.Role}</TableCell>
                       <TableCell>
-                        <Button
-                          color="primary"
-                          startIcon={<IconEdit width="18" />}
-                          onClick={() => handleEditClick(user)}
-                        >
-                          Edit
-                        </Button>
-                        <Button
-                          color="error"
-                          startIcon={<IconTrash width="18" />}
-                          onClick={() => handleDeleteClick(user.ID)}
-                        >
-                          Delete
-                        </Button>
+
+
+                        <Tooltip title="Edit">
+                          <IconButton
+                            color="primary"
+                            onClick={() => handleEditClick(user)}
+                          >
+                            <IconEdit width="18" />
+                          </IconButton>
+                        </Tooltip>
+
+                        <Tooltip title="Delete">
+                          <IconButton
+                            color="error" onClick={() => handleDeleteClick(user.ID)}>
+                            <IconTrash width="16" />
+                          </IconButton>
+                        </Tooltip>
                       </TableCell>
                     </TableRow>
                   ))}

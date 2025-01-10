@@ -1,9 +1,9 @@
 import {
-    IconAward,
-    IconBoxMultiple,
-    IconPoint,
-    IconBan,
-    IconStar,
+    IconUsers,
+    IconUsb,
+    IconReportAnalytics,
+    Icon24Hours,
+    IconBuildingSkyscraper,
     IconMoodSmile,
     IconAperture,
     IconDashboard,
@@ -46,38 +46,38 @@ const Menuitems = [
     {
         id: uniqueId(),
         title: 'Users',
-        icon: IconReportMoney,
+        icon: IconUsers,
         href: '/users'
     },
     {
         id: uniqueId(),
         title: 'Employees',
-        icon: IconCashBanknote,
+        icon: IconMoodSmile,
         href: '/employees'
     },
     {
         id: uniqueId(),
         title: 'Companies',
-        icon: IconReceipt,
+        icon: IconBuildingSkyscraper,
         href: '/companies'
     },
     {
         id: uniqueId(),
         title: 'EmployeeWorkDay',
-        icon: IconCoin,
+        icon: Icon24Hours,
         href: '/employee-work-day'
     },
     {
         id: uniqueId(),
-        title: 'TPE',
-        icon: IconDeviceTablet,
-        href: '/tpe-page'
+        title: 'Devices',
+        icon: IconUsb,
+        href: '/devices-page'
     },
     {
         id: uniqueId(),
-        title: 'Luise',
-        icon: IconDiamond,
-        href: '/luise-page'
+        title: 'Reports',
+        icon: IconReportAnalytics,
+        href: '/reports-page'
     },
     // {
     //     id: uniqueId(),
