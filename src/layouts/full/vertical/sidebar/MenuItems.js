@@ -63,9 +63,9 @@ const Menuitems = [
     },
     {
         id: uniqueId(),
-        title: 'EmployeeWorkDay',
+        title: 'WorkDay',
         icon: Icon24Hours,
-        href: '/employee-work-day'
+        href: '/work-day'
     },
     {
         id: uniqueId(),

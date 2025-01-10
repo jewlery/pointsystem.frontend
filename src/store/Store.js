@@ -10,7 +10,8 @@ import ClientReducer from "./apps/client/clientSlice";
 import DashboardReducer from './apps/dashboard/dashboardSlice';
 import UserReducer from './apps/users/userSlice'; // Import the userSlice
 import CompanyReducer from './apps/company/companySlice'; // Import the companySlice
-
+import EmployeeReducer from './apps/employee/employeeSlice'; // Import the employeeSlice
+import WorkdayReducer from './apps/workday/workdaySlice'; // Import the workdaySlice
 
 export const store = configureStore({
   reducer: {
@@ -25,6 +26,8 @@ export const store = configureStore({
     dashboardReducer: DashboardReducer,
     userReducer: UserReducer, // Add the userReducer
     companyReducer: CompanyReducer, // Add the companyReducer
+    employeeReducer: EmployeeReducer, // Add the employeeReducer
+    workdayReducer: WorkdayReducer, // Add the workdayReducer
   },
 });
 

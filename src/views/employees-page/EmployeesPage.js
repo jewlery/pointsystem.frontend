@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import Breadcrumb from 'src/layouts/full/shared/breadcrumb/Breadcrumb';
 import PageContainer from 'src/components/container/PageContainer';
-import CompaniesTableList from '../../components/apps/company/TableList/CompaniesTableList';
+import EmployeesTableList from '../../components/apps/employees/TableList/EmployeeTableList';
 
 const BCrumb = [
   {
@@ -10,21 +10,21 @@ const BCrumb = [
     title: 'Home',
   },
   {
-    title: 'Companies',
+    title: 'Employees',
   },
 ];
 
-const CompanyPage = () => {
+const EmployeesPage = () => {
   return (
-    <PageContainer title="Companies" description="this is Companies page">
+    <PageContainer title="Employees" description="this is Employees page">
       {/* breadcrumb */}
-      <Breadcrumb title="List of Companies" items={BCrumb} />
+      <Breadcrumb title="List of Employees" items={BCrumb} />
       {/* end breadcrumb */}
       <Box>
-        <CompaniesTableList />
+        <EmployeesTableList />
       </Box>
     </PageContainer>
   );
 };
 
-export default CompanyPage;
+export default EmployeesPage;

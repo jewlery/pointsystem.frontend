@@ -1,78 +1,58 @@
 import React, { useState } from 'react';
-import {
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-    Button,
-    TextField,
-    Box,
-    Typography,
-} from '@mui/material';
+import PropTypes from 'prop-types';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { createCompany } from 'src/store/apps/company/companySlice'; // Assuming you have a companySlice
-import { IconPlus } from '@tabler/icons';
+import { createCompany } from '../../../../store/apps/company/companySlice';
 
 const CreateCompanyDialog = ({ open, onClose }) => {
-    const dispatch = useDispatch();
-    const [companyName, setCompanyName] = useState('');
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({ CompanyName: '' });
 
-    const handleSubmit = () => {
-        dispatch(createCompany({ companyName }))
-            .unwrap()
-            .then(() => {
-                onClose(); // Close the dialog on successful creation
-            })
-            .catch((error) => {
-                console.error('Failed to create company:', error);
-            });
-    };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-    return (
-        <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-            <DialogTitle>
-                <Typography variant="h6">Create New Company</Typography>
-            </DialogTitle>
-            <DialogContent>
-                <Box sx={{ mt: 2 }}>
-                    <TextField
-                        fullWidth
-                        label="Company Name"
-                        value={companyName}
-                        onChange={(e) => setCompanyName(e.target.value)}
-                        margin="normal"
-                    />
-                </Box>
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={onClose} color="secondary">
-                    Cancel
-                </Button>
-                <Button
-                    onClick={handleSubmit}
-                    color="primary"
-                    variant="contained"
-                    startIcon={<IconPlus />}
-                    sx={{
-                        width: { xs: 'auto', md: '175px' },
-                        '& .MuiButton-startIcon': {
-                            marginRight: { xs: 0, sm: 0, md: '8px' },
-                        },
-                    }}
-                >
-                    <Box
-                        component="span"
-                        sx={{
-                            display: { xs: 'none', md: 'inline' },
-                            whiteSpace: 'nowrap',
-                        }}
-                    >
-                        Create Company
-                    </Box>
-                </Button>
-            </DialogActions>
-        </Dialog>
-    );
+  const handleSubmit = () => {
+    if (formData.CompanyName.trim() === '') {
+      alert('Company name cannot be empty');
+      return;
+    }
+    dispatch(createCompany(formData));
+    onClose();
+  };
+
+  return (
+    <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
+      <DialogTitle>Create Company</DialogTitle>
+      <DialogContent>
+        <TextField
+          autoFocus
+          margin="dense"
+          name="CompanyName"
+          label="Company Name"
+          type="text"
+          fullWidth
+          variant="outlined"
+          value={formData.CompanyName}
+          onChange={handleChange}
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} color="primary">
+          Cancel
+        </Button>
+        <Button onClick={handleSubmit} color="primary">
+          Create
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
+
+CreateCompanyDialog.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 export default CreateCompanyDialog;

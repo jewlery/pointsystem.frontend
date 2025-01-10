@@ -15,8 +15,10 @@ const ClientCreditPage = Loadable(lazy(() => import('../views/client-credit-page
 const AchatPage = Loadable(lazy(() => import('../views/achat-page/AchatPage')))
 const TpePage = Loadable(lazy(() => import('../views/tpe-page/TpePage')))
 const CompanyPage = Loadable(lazy(() => import('../views/company-page/CompanyPage')))
+const WorkDayPage = Loadable(lazy(() => import('../views/workday-page/WorkDayPage')))
 const BenifPage = Loadable(lazy(() => import('../views/benif-page/BenifPage')))
 const LuisePage = Loadable(lazy(() => import('../views/luise-page/LuisePage')))
+const EmployeesPage = Loadable(lazy(() => import('../views/employees-page/EmployeesPage')))
 const DashboardPage = Loadable(lazy(() => import('../views/dashboard-page/DashboardPage')))
 const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Login2 = Loadable(lazy(() => import('../views/authentication/auth2/Login2')));
@@ -38,7 +40,9 @@ const Router = [
             {path: '/benif-page', exact: true, element: <BenifPage/>},
             {path: '/luise-page', exact: true, element: <LuisePage/>},
             {path: '/users', exact: true, element: <UsersPage />},
+            {path: '/employees', exact: true, element: <EmployeesPage />},
             {path: '/companies', exact: true, element: <CompanyPage />},
+            {path: '/work-day', exact: true, element: <WorkDayPage />},
             {path: '*', element: <Navigate to="/auth/404"/>},
         ],
     },

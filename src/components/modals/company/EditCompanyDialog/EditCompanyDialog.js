@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { updateCompany } from '../../../store/apps/company/companySlice';
+import { updateCompany } from '../../../../store/apps/company/companySlice';
 
 const EditCompanyDialog = ({ open, onClose, companyData }) => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({ companyName: '' });
+  const [formData, setFormData] = useState({ CompanyName: '' });
 
   useEffect(() => {
     if (companyData) {
-      setFormData({ companyName: companyData.companyName });
+      setFormData({ CompanyName: companyData.CompanyName });
     }
   }, [companyData]);
 
@@ -20,7 +20,7 @@ const EditCompanyDialog = ({ open, onClose, companyData }) => {
   };
 
   const handleSubmit = () => {
-    if (formData.companyName.trim() === '') {
+    if (formData.CompanyName.trim() === '') {
       alert('Company name cannot be empty');
       return;
     }
@@ -33,17 +33,19 @@ const EditCompanyDialog = ({ open, onClose, companyData }) => {
       <DialogTitle>Edit Company</DialogTitle>
       <DialogContent>
         <TextField
+          autoFocus
+          margin="dense"
+          name="CompanyName"
           label="Company Name"
-          name="companyName"
-          value={formData.companyName}
-          onChange={handleChange}
+          type="text"
           fullWidth
           variant="outlined"
-          margin="dense"
+          value={formData.CompanyName}
+          onChange={handleChange}
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="secondary">
+        <Button onClick={onClose} color="primary">
           Cancel
         </Button>
         <Button onClick={handleSubmit} color="primary">
@@ -57,10 +59,7 @@ const EditCompanyDialog = ({ open, onClose, companyData }) => {
 EditCompanyDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  companyData: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    companyName: PropTypes.string.isRequired,
-  }),
+  companyData: PropTypes.object,
 };
 
 export default EditCompanyDialog;
