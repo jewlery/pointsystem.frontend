@@ -7,10 +7,10 @@ const API_URL = '/employees';
 // Async thunk to fetch employees with pagination and search
 export const fetchEmployees = createAsyncThunk(
   'employees/fetchEmployees',
-  async ({ page = 1, rowsPerPage = 5, search = '' }, { rejectWithValue }) => {
+  async ({ page = 1, limit = 5, search = '' }, { rejectWithValue }) => {
     try {
       const response = await axios.get(API_URL, {
-        params: { page, rowsPerPage, search },
+        params: { page, limit, search },
       });
       return response.data;
     } catch (error) {
@@ -80,9 +80,8 @@ const employeeSlice = createSlice({
       })
       .addCase(fetchEmployees.fulfilled, (state, action) => {
         state.loading = false;
-        console.log(action.payload);
-        state.employees = action.payload;
-        state.total = action.payload?.lengh;
+        state.employees = action.payload.data;
+        state.total = action.payload?.total;
       })
       .addCase(fetchEmployees.rejected, (state, action) => {
         state.loading = false;
@@ -95,7 +94,9 @@ const employeeSlice = createSlice({
       })
       .addCase(createEmployee.fulfilled, (state, action) => {
         state.loading = false;
-        state.employees.push(action.payload);
+        if(!state.employees)
+          state.employees = [];
+        state.employees.push(action.payload.data);
       })
       .addCase(createEmployee.rejected, (state, action) => {
         state.loading = false;
@@ -110,7 +111,7 @@ const employeeSlice = createSlice({
         state.loading = false;
         const index = state.employees.findIndex(employee => employee.id === action.payload.id);
         if (index !== -1) {
-          state.employees[index] = action.payload;
+          state.employees[index] = action.payload.data;
         }
       })
       .addCase(updateEmployee.rejected, (state, action) => {

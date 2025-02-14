@@ -4,13 +4,24 @@ import axios from 'src/utils/axios';
 // Define the base API URL for companies
 const API_URL = '/companies';
 
+// Async thunk to fetch clients from the server
+export const selectCompanies = async () => {
+    try {
+        const response = await axios.get(`${API_URL}/select`);
+        return response.data || [];
+    } catch (error) {
+        throw error.response.data;
+    }
+};
+
+
 // Async thunk to fetch companies with pagination, filtering, and search
 export const fetchCompanies = createAsyncThunk(
     'companies/fetchCompanies',
-    async ({ page = 1, rowsPerPage = 5, search = '', order, orderBy }, { rejectWithValue }) => {
+    async ({ page = 1, limit = 5, search = '', order, orderBy }, { rejectWithValue }) => {
         try {
             const response = await axios.get(API_URL, {
-                params: { page, rowsPerPage, search, order, orderBy },
+                params: { page, limit, search, order, orderBy },
             });
             return response.data;
         } catch (error) {
@@ -80,8 +91,12 @@ const companySlice = createSlice({
             })
             .addCase(fetchCompanies.fulfilled, (state, action) => {
                 state.loading = false;
-                state.companies = action.payload; // Update the list of companies
-                state.total = action.payload.length; // Update the total count
+                if (!action.payload.data) {
+                    action.payload = []
+                }
+
+                state.companies = action.payload.data;
+                state.total = action.payload.total;
             })
             .addCase(fetchCompanies.rejected, (state, action) => {
                 state.loading = false;
@@ -95,6 +110,11 @@ const companySlice = createSlice({
             })
             .addCase(createCompany.fulfilled, (state, action) => {
                 state.loading = false;
+                if (!state.companies) {
+                    state.companies = []
+                }
+                state.companies.push(action.payload.data)
+
             })
             .addCase(createCompany.rejected, (state, action) => {
                 state.loading = false;
@@ -108,6 +128,11 @@ const companySlice = createSlice({
             })
             .addCase(updateCompany.fulfilled, (state, action) => {
                 state.loading = false;
+                console.log(action.payload)
+                const index = state.companies.findIndex(company => company.ID === action.payload.data.ID);
+                if (index !== -1) {
+                    state.companies[index] = action.payload.data;
+                }
             })
             .addCase(updateCompany.rejected, (state, action) => {
                 state.loading = false;
@@ -121,6 +146,7 @@ const companySlice = createSlice({
             })
             .addCase(deleteCompany.fulfilled, (state, action) => {
                 state.loading = false;
+                state.companies = state.companies.filter(company => company.ID !== action.payload);
             })
             .addCase(deleteCompany.rejected, (state, action) => {
                 state.loading = false;

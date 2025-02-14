@@ -42,11 +42,11 @@ const UsersTableList = () => {
   }, [dispatch, page, rowsPerPage]);
 
   // Handle search/filter (frontend filtering)
-  const filteredUsers = users.filter((user) =>
-    user.Username.toLowerCase().includes(search.toLowerCase()) ||
-    user.FirstName.toLowerCase().includes(search.toLowerCase()) ||
-    user.LastName.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredUsers = users?.filter((user) =>
+    user.Username?.toLowerCase().includes(search.toLowerCase()) ||
+    user.FirstName?.toLowerCase().includes(search.toLowerCase()) ||
+    user.LastName?.toLowerCase().includes(search.toLowerCase())
+  ) || [];
 
   // Handle pagination
   const handleChangePage = (event, newPage) => {
@@ -125,7 +125,7 @@ const UsersTableList = () => {
               </TableHead>
               <TableBody>
                 {filteredUsers
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((user) => (
                     <TableRow key={user.ID} hover>
                       <TableCell>{user.ID}</TableCell>

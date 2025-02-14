@@ -37,7 +37,7 @@ const EmployeeTableList = () => {
     const loading = useSelector((state) => state.employeeReducer.loading);
 
     useEffect(() => {
-        dispatch(fetchEmployees({ page: page + 1, rowsPerPage, search }));
+        dispatch(fetchEmployees({ page: page + 1, limit: rowsPerPage, search }));
     }, [dispatch, page, rowsPerPage, search]);
 
     const handleSearch = (event) => {
@@ -102,7 +102,8 @@ const EmployeeTableList = () => {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>ID</TableCell>
-                                    <TableCell>User ID</TableCell>
+                                    <TableCell>First Name</TableCell>
+                                    <TableCell>Last Name</TableCell>
                                     <TableCell>Registration Number</TableCell>
                                     <TableCell>Qualification</TableCell>
                                     <TableCell>Company ID</TableCell>
@@ -113,16 +114,16 @@ const EmployeeTableList = () => {
                             </TableHead>
                             <TableBody>
                                 {employees
-                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                    .map((employee) => (
-                                        <TableRow key={employee.ID} hover>
-                                            <TableCell>{employee.ID}</TableCell>
-                                            <TableCell>{employee.UserID}</TableCell>
-                                            <TableCell>{employee.RegistrationNumber}</TableCell>
-                                            <TableCell>{employee.Qualification}</TableCell>
-                                            <TableCell>{employee.CompanyID}</TableCell>
-                                            <TableCell>{employee.StartHour}</TableCell>
-                                            <TableCell>{employee.EndHour}</TableCell>
+                                    ?.map((employee) => (
+                                        <TableRow key={employee.id} hover>
+                                            <TableCell>{employee.id}</TableCell>
+                                            <TableCell>{employee.first_name}</TableCell>
+                                            <TableCell>{employee.last_name}</TableCell>
+                                            <TableCell>{employee.registration_number}</TableCell>
+                                            <TableCell>{employee.qualification}</TableCell>
+                                            <TableCell>{employee.company_id}</TableCell>
+                                            <TableCell>{employee.start_hour}</TableCell>
+                                            <TableCell>{employee.end_hour}</TableCell>
                                             <TableCell>
                                                 <Tooltip title="Edit">
                                                     <IconButton
@@ -135,7 +136,7 @@ const EmployeeTableList = () => {
                                                 <Tooltip title="Delete">
                                                     <IconButton
                                                         color="error"
-                                                        onClick={() => handleDeleteClick(employee.ID)}
+                                                        onClick={() => handleDeleteClick(employee.id)}
                                                     >
                                                         <IconTrash width="16" />
                                                     </IconButton>

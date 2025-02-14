@@ -9,10 +9,12 @@ import { styled } from '@mui/material';
 const Logo = () => {
   const customizer = useSelector((state) => state.customizer);
   const LinkStyled = styled(Link)(() => ({
-    height: customizer.TopbarHeight,
+    height: customizer.TopbarHeight + 10,
     width: customizer.isCollapse ? '40px' : '180px',
     overflow: 'hidden',
-    display: 'block',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }));
 
   if (customizer.activeDir === 'ltr') {

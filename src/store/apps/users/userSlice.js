@@ -49,7 +49,7 @@ export const updateUser = createAsyncThunk(
   async ({ id, userData }, { rejectWithValue }) => {
     try {
       const response = await axios.put(`${API_URL}/${id}`, userData);
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -110,7 +110,7 @@ const userSlice = createSlice({
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.loading = false;
-        state.users = action.payload;
+        state.users = action.payload.data;
       })
       .addCase(fetchUsers.rejected, (state, action) => {
         state.loading = false;
@@ -136,6 +136,9 @@ const userSlice = createSlice({
       })
       .addCase(createUser.fulfilled, (state, action) => {
         state.loading = false;
+        if(!state.users)
+          state.users = [];
+        state.users.push(action.payload.data);
       })
       .addCase(createUser.rejected, (state, action) => {
         state.loading = false;
@@ -148,7 +151,9 @@ const userSlice = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.loading = false;
-        const index = state.users.findIndex(user => user.id === action.payload.id);
+        console.log(action.payload)
+        const index = state.users.findIndex(user => user.ID === action.payload.ID);
+        console.log(index)
         if (index !== -1) {
           state.users[index] = action.payload;
         }
@@ -164,7 +169,7 @@ const userSlice = createSlice({
       })
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.users = state.users.filter(user => user.id !== action.payload);
+        state.users = state.users.filter(user => user.ID !== action.payload);
       })
       .addCase(deleteUser.rejected, (state, action) => {
         state.loading = false;

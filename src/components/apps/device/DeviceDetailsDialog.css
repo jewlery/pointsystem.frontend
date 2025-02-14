@@ -1,0 +1,29 @@
+.rdrMonth {
+    width: 100%;
+}
+
+
+.rdrStaticRanges {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+
+
+.rdrDefinedRangesWrapper {
+    font-size: 12px;
+    width: auto;
+    border-right: solid 1px #eff2f7;
+    background: #fff;
+}
+
+
+.rdrDateRangePickerWrapper {
+    display: inline-flex;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    flex-direction: column;
+    width: 100%;
+}

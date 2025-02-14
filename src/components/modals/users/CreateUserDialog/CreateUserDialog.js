@@ -8,10 +8,14 @@ import {
     TextField,
     Box,
     Typography,
+    MenuItem,
+    FormControl,
+    InputLabel,
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { createUser } from 'src/store/apps/users/userSlice'; // Assuming you have a userSlice for user management
 import { IconPlus } from '@tabler/icons'; // Import the IconPlus for consistency
+import CustomSelect from 'src/components/forms/theme-elements/CustomSelect';
 
 const CreateUserDialog = () => {
     const [open, setOpen] = useState(false);
@@ -116,20 +120,22 @@ const CreateUserDialog = () => {
                             onChange={handleChange}
                             margin="normal"
                         />
-                        <TextField
-                            fullWidth
-                            label="Role"
-                            name="role"
-                            value={formData.role}
-                            onChange={handleChange}
-                            margin="normal"
-                            select
-                            SelectProps={{ native: true }}
-                        >
-                            <option value="employee">Employee</option>
-                            <option value="manager">Manager</option>
-                            <option value="admin">Admin</option>
-                        </TextField>
+
+
+
+                        <FormControl fullWidth margin="dense">
+                            <InputLabel>Role</InputLabel>
+                            <CustomSelect
+                                fullWidth
+                                name="Role"
+                                label="Role"
+                                value={formData.Role}
+                                onChange={handleChange}
+                            >
+                                <MenuItem value="manager">Manager</MenuItem>
+                                <MenuItem value="admin">Admin</MenuItem>
+                            </CustomSelect>
+                        </FormControl>
                     </Box>
                 </DialogContent>
                 <DialogActions>

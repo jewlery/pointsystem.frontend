@@ -4,6 +4,7 @@ import Loadable from '../layouts/full/shared/loadable/Loadable';
 
 import AuthGuard from 'src/guards/authGuard/AuthGuard';
 import GuestGuard from 'src/guards/authGuard/GuestGaurd';
+import { element } from 'prop-types';
 /* ***Layouts**** */
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')));
@@ -16,9 +17,11 @@ const AchatPage = Loadable(lazy(() => import('../views/achat-page/AchatPage')))
 const TpePage = Loadable(lazy(() => import('../views/tpe-page/TpePage')))
 const CompanyPage = Loadable(lazy(() => import('../views/company-page/CompanyPage')))
 const WorkDayPage = Loadable(lazy(() => import('../views/workday-page/WorkDayPage')))
+const DetailedWorkDayPage = Loadable(lazy(() => import('../views/workday-page/DetailedWorkDayPage')))
 const BenifPage = Loadable(lazy(() => import('../views/benif-page/BenifPage')))
 const LuisePage = Loadable(lazy(() => import('../views/luise-page/LuisePage')))
 const EmployeesPage = Loadable(lazy(() => import('../views/employees-page/EmployeesPage')))
+const DevicePage = Loadable(lazy(() => import('../views/device-management/DeviceManagementPage')))
 const DashboardPage = Loadable(lazy(() => import('../views/dashboard-page/DashboardPage')))
 const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Login2 = Loadable(lazy(() => import('../views/authentication/auth2/Login2')));
@@ -41,8 +44,10 @@ const Router = [
             {path: '/luise-page', exact: true, element: <LuisePage/>},
             {path: '/users', exact: true, element: <UsersPage />},
             {path: '/employees', exact: true, element: <EmployeesPage />},
+            {path: '/devices', exact: true, element: <DevicePage />},
             {path: '/companies', exact: true, element: <CompanyPage />},
             {path: '/work-day', exact: true, element: <WorkDayPage />},
+            {path: '/work-day/:workDayID', element: <DetailedWorkDayPage/>},
             {path: '*', element: <Navigate to="/auth/404"/>},
         ],
     },

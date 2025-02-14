@@ -24,7 +24,7 @@ const EditCompanyDialog = ({ open, onClose, companyData }) => {
       alert('Company name cannot be empty');
       return;
     }
-    dispatch(updateCompany({ id: companyData.id, ...formData }));
+    dispatch(updateCompany({ id: companyData.ID, companyData: formData }));
     onClose();
   };
 

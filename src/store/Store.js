@@ -12,6 +12,9 @@ import UserReducer from './apps/users/userSlice'; // Import the userSlice
 import CompanyReducer from './apps/company/companySlice'; // Import the companySlice
 import EmployeeReducer from './apps/employee/employeeSlice'; // Import the employeeSlice
 import WorkdayReducer from './apps/workday/workdaySlice'; // Import the workdaySlice
+import AttendancesReducer from './apps/attendance/attendanceSlice'; // Import the attendancesSlice
+import DeviceReducer from './apps/device/deviceSlice'; // Import the attendancesSlice
+import RawAttendanceReducer from './apps/raw-attendance/rawAttendanceSlice'; // Import the attendancesSlice
 
 export const store = configureStore({
   reducer: {
@@ -28,6 +31,9 @@ export const store = configureStore({
     companyReducer: CompanyReducer, // Add the companyReducer
     employeeReducer: EmployeeReducer, // Add the employeeReducer
     workdayReducer: WorkdayReducer, // Add the workdayReducer
+    attendanceReducer: AttendancesReducer, // Add the attendancesReducer
+    deviceReducer: DeviceReducer, // Add the attendancesReducer
+    rawAttendance: RawAttendanceReducer, // Add the attendancesReducer
   },
 });
 

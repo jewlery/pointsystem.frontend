@@ -18,9 +18,10 @@ import {
     Tooltip,
     IconButton,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchWorkDays, deleteWorkDay } from 'src/store/apps/workday/workdaySlice';
-import { IconSearch, IconTrash, IconEdit } from '@tabler/icons';
+import { IconSearch, IconTrash, IconEdit, IconEye } from '@tabler/icons';
 import CreateWorkDayDialog from '../../../modals/workday/CreateWorkDayDialog';
 import EditWorkDayDialog from '../../../modals/workday/EditWorkDayDialog';
 
@@ -124,6 +125,17 @@ const WorkDayTableList = () => {
                                                         <IconEdit width="18" />
                                                     </IconButton>
                                                 </Tooltip>
+
+                                                <Tooltip title="Show">
+                                                    <IconButton
+                                                        color="secondary"
+                                                        component={Link}
+                                                        to={`/work-day/${workday.ID}`}
+                                                    >
+                                                        <IconEye width="18" />
+                                                    </IconButton>
+                                                </Tooltip>
+
                                                 <Tooltip title="Delete">
                                                     <IconButton
                                                         color="error"

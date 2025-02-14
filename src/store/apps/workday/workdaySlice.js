@@ -94,7 +94,7 @@ const workdaySlice = createSlice({
       })
       .addCase(createWorkDay.fulfilled, (state, action) => {
         state.loading = false;
-        state.workdays.push(action.payload);
+        state.workdays.push(action.payload.data);
       })
       .addCase(createWorkDay.rejected, (state, action) => {
         state.loading = false;
@@ -123,7 +123,8 @@ const workdaySlice = createSlice({
       })
       .addCase(deleteWorkDay.fulfilled, (state, action) => {
         state.loading = false;
-        state.workdays = state.workdays.filter(workday => workday.id !== action.payload);
+        console.log(action);
+        state.workdays = state.workdays.filter(workday => workday.ID !== action.payload);
       })
       .addCase(deleteWorkDay.rejected, (state, action) => {
         state.loading = false;

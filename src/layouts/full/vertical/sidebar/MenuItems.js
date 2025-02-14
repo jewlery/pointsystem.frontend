@@ -71,7 +71,7 @@ const Menuitems = [
         id: uniqueId(),
         title: 'Devices',
         icon: IconUsb,
-        href: '/devices-page'
+        href: '/devices'
     },
     {
         id: uniqueId(),
