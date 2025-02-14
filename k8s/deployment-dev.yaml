@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes object type
+metadata:
+  name: $(imageName) # Deploymnent name
+  labels:
+    app: $(imageName)
+spec:
+  replicas: 1 # Number of matching pod replicas to be created by the deployment
+  selector:
+    matchLabels: # Should match labels set on the pod
+      app: $(imageName)
+  template: # Pod configuration
+    metadata:
+      labels:
+        app: $(imageName) # Label set on pod
+    spec:
+      containers:
+      - name: $(imageName)
+        image: $(acrUrl)/$(imageName):$(imageTag) # The container the pod will run
+        imagePullPolicy: Always # Always pull image from the repository
+        env:
+          
+        ports:
+        - containerPort: 80 # Port to reach app inside the container
+        # resources: # CPU and memory limits
+        #   requests:
+        #     cpu: 100m
+        #     memory: 128Mi
+        #   limits:
+        #     cpu: 200m
+        #     memory: 512Mi
+        # readinessProbe:
+        #   httpGet:
+        #     path: /health
+        #     port: 80
+        #   initialDelaySeconds: 30
+        #   periodSeconds: 15  # How often to perform the probe
+        # livenessProbe:
+        #   httpGet:
+        #     path: /health
+        #     port: 80
+        #   initialDelaySeconds: 30
+        #   periodSeconds: 15  # How often to perform the probe
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+data:
+  NODE_ENV: PRODUCTION
+  REACT_APP_BASE_URL: https://dev-api.thegamechangercompany.io/hadir-back
+  REACT_APP_WS_URL: wss://dev-api.thegamechangercompany.io/hadir-back/ws
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: $(imageName)
+  labels:
+    app: $(imageName)
+spec:
+  selector:
+    app: $(imageName)
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
