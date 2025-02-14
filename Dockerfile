@@ -66,7 +66,7 @@ COPY --from=build /build/dist /usr/share/nginx/html
 RUN chown -R nginx:nginx /usr/share/nginx/html && \
     chmod -R 755 /usr/share/nginx/html
 
-# Expose port 80 NOT 3069, l3AAAAR A SALAH STOP QUACKING IN MY DOCKERFILES
+# Expose port 80
 EXPOSE 80
 
 # Start Nginx server
