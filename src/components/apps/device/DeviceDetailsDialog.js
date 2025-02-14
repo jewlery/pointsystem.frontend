@@ -37,6 +37,7 @@ import './DeviceDetailsDialog.css';
 import Skeleton from '@mui/material/Skeleton';
 import { Search, Devices, SearchOff, FileDownload, Login, Logout, FilterList, Coffee } from '@mui/icons-material';
 import { Socket } from 'src/utils/socket';
+import { WEBSOCKET_URL } from 'src/utils/axios';
 
 const DeviceDetailsDialog = ({ open, onClose, deviceData }) => {
     const [search, setSearch] = useState('');
@@ -64,7 +65,7 @@ const DeviceDetailsDialog = ({ open, onClose, deviceData }) => {
 
     useEffect(() => {
         const socket = new Socket()
-        socket.connect('wss://dev-api.thegamechangercompany.io/hadir-back/ws')
+        socket.connect(WEBSOCKET_URL)
 
         socket.on('open', (event) => {
             console.log('You say hello...')

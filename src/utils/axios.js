@@ -6,7 +6,9 @@ let subdomain = hostname.split('.')[0]; // Extract the subdomain from the hostna
 let domain = hostname.split('.')[1]; // Extract the subdomain from the hostname
 
 // Determine the base URL based on the subdomain
-let BASE_URL  = 'https://dev-api.thegamechangercompany.io/hadir-back'; 
+let BASE_URL = process.env.REACT_APP_BASE_URL || 'https://dev-api.thegamechangercompany.io/hadir-back'; 
+export const WEBSOCKET_URL = process.env.REACT_APP_WS_URL || 'wss://dev-api.thegamechangercompany.io/hadir-back/ws'; 
+
 
 // Create the Axios instance with the dynamic base URL
 const axiosServices = axios.create({
