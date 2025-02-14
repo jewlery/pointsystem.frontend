@@ -42,7 +42,7 @@ stages:
     - task: Docker@2
       displayName: 'Build & Push to ACR'
       inputs:
-        containerRegistry: 'acr-dev'  # e.g., 'ACR-Service-Connection'
+        containerRegistry: 'acr-connection'  # e.g., 'ACR-Service-Connection'
         repository: '$(imageName)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
@@ -81,7 +81,7 @@ stages:
             inputs:
               action: 'deploy'
               connectionType: 'kubernetesServiceConnection'
-              kubernetesServiceConnection: 'dev-KubernetesCluster2-frontend-dev-1738665377192'
+              kubernetesServiceConnection: 'dev-KubernetesCluster2-hadir-dev-1739194956822'
               namespace: 'frontend-dev'
               manifests: '$(Pipeline.Workspace)/s/k8s/deployment-dev.yaml'
               containers: '$(acrUrl)/$(imageName):$(imageTag)'
