@@ -5,14 +5,7 @@ WORKDIR /build
 
 # Copy package.json and all configuration files first
 COPY package.json ./
-COPY tsconfig.json ./
-COPY tsconfig.app.json ./
-COPY tsconfig.node.json ./
-COPY vite.config.ts ./
-COPY index.html ./
-COPY tailwind.config.js ./
-COPY postcss.config.js ./
-COPY eslint.config.js ./
+# COPY index.html ./
 
 # Install dependencies
 RUN npm install --verbose
