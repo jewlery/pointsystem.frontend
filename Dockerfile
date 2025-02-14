@@ -8,7 +8,7 @@ COPY package.json ./
 # COPY index.html ./
 
 # Install dependencies
-RUN npm install --verbose
+RUN npm install --verbose --force
 
 # Copy all source files including assets
 COPY public/ public/
